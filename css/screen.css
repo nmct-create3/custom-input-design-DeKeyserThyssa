@@ -803,33 +803,55 @@ input::placeholder {
     border-color: var(--global-color-alpha-dark);
 }
 
-.c-custom-toggle {
+
+.c-custom-toggle{
     --custom-option-borderColor: var(--global-input-borderColor);
-    --custom-option-focus-borderColor: var(--global-input-focus-borderColor);
     display: flex;
     align-items: center;
+    margin-bottom:var(--global-whitespace);
 }
 
-.c-custom-toggle__fake-input {
+.c-custom-toggle__fake-input{
     display: block;
     width: var(--global-whitespace-xl);
     height: var(--global-whitespace);
+    margin-right: var(--global-whitespace-md);
     background-color: var(--global-color-neutral-xxxx-light);
-    /* margin-right: var(--global-whitespace-sm); */
-    /* OLD: border: 1px solid var(--global-input-borderColor); */
-    border: 1px solid var(--custom-option-borderColor);
+
+    border:1px solid var(--global-input-borderColor);
     border-radius: 24px;
+    transition: all var(--global-transitionTiming-alpha);
 }
 
 .c-custom-toggle__fake-input::after {
-    transition: all var(--transition-alpha);
+    content: "";
     display: block;
-    width: var(2.75 * var(--global-whitespace-sm));
-    height: var(2.75 * var(--global-whitespace-sm));
-    background-color: #fff;
-    border-radius: 50%;
-    box-shadow: var(--global-input-boxShadow);
 
+    width: 21.5px;
+    height: 21.5px;
+    border-radius: 50%;
+
+    background-color: white;
+    box-shadow: inset;
+
+    transition: all var(--global-transitionTiming-alpha);
+}
+
+/* Focus state */
+.c-option--hidden:focus + .c-custom-toggle .c-custom-toggle__fake-input {
+    border-color: var(--global-color-alpha);
+    box-shadow: var(--global-input-boxShadow);
+}
+
+/* Checked state */
+.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input {
+    background-color: var(--global-color-alpha);
+    border-color: var(--global-color-alpha);
+}
+
+/* Checked state: circle transform */
+.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input::after {
+    transform: translateX(24px);
 }
 
 /*
